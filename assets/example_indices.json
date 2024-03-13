@@ -1,0 +1,70 @@
+{
+    "example1": {
+        "settings": {
+            "analysis": {
+                "analyzer": {
+                    "custom_analyzer": {
+                        "filter": ["lowercase", "shingle_filter", "word_delimiter"],
+                        "char_filter": [],
+                        "tokenizer": "whitespace"
+                    }
+                },
+                "filter": {
+                    "shingle_filter": {
+                        "type": "shingle",
+                        "max_shingle_size": 3,
+                        "min_shingle_size": 2,
+                        "output_unigrams": true
+                    },
+                    "word_delimiter": {
+                        "type": "word_delimiter",
+                        "generate_word_parts": false,
+                        "generate_number_parts": false,
+                        "split_on_case_change": false,
+                        "preserve_original": true,
+                        "catenate_all": true
+                    }
+                }
+            }
+        },
+        "mappings": {
+            "properties": {
+                "text": {"type": "text", "analyzer": "custom_analyzer"}
+            }
+        }
+    },
+    "example2": {
+        "settings": {
+            "analysis": {
+                "analyzer": {
+                    "custom_analyzer": {
+                        "filter": ["lowercase", "kstem", "synonym_filter", "ngram_filter"],
+                        "char_filter": ["html_strip"],
+                        "tokenizer": "standard"
+                    }
+                },
+                "filter": {
+                    "ngram_filter": {
+                        "type": "ngram",
+                        "min_gram": 3,
+                        "max_gram": 4
+                    },
+                    "synonym_filter": {
+                        "type": "synonym",
+                        "synonyms": ["lazy, slow", "jump, leap"]
+                    }
+                },
+                "char_filter": {
+                    "html_strip": {
+                        "type": "html_strip"
+                    }
+                }
+            }
+        },
+        "mappings": {
+            "properties": {
+                "text": {"type": "text", "analyzer": "custom_analyzer"}
+            }
+        }
+    }
+}
