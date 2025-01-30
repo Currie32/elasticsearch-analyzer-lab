@@ -10,8 +10,8 @@ CODE_BLOCK1 = """"synonyms_filter": {
 """
 CODE_BLOCK2 = """"pattern_filter": {
    "type": "pattern_replace",
-    "pattern": "dog",
-    "replacement": "DOG"
+   "pattern": "dog",
+   "replacement": "DOG"
 }
 """
 CODE_BLOCK3 = """"word_delimiter_filter": {
@@ -20,45 +20,45 @@ CODE_BLOCK3 = """"word_delimiter_filter": {
 }
 """
 CODE_BLOCK4 = """{
-  "settings": {
-    "analysis": {
-      "analyzer": {
-        "custom_analyzer": {
-          "filter": [
-            "lowercase",
-            "synonyms_filter",
-            "pattern_filter",
-            "word_delimiter_filter"
-          ],
-          "char_filter": [],
-          "tokenizer": "whitespace"
+    "settings": {
+        "analysis": {
+            "analyzer": {
+                "custom_analyzer": {
+                    "filter": [
+                        "lowercase",
+                        "synonyms_filter",
+                        "pattern_filter",
+                        "word_delimiter_filter"
+                    ],
+                    "char_filter": [],
+                    "tokenizer": "whitespace"
+                }
+            },
+            "filter": {
+                "pattern_filter": {
+                    "type": "pattern_replace",
+                    "pattern": "dog",
+                    "replacement": "DOG"
+                },
+                "synonyms_filter": {
+                    "type": "synonym",
+                    "synonyms": ["QUICK, fast"]
+                },
+                "word_delimiter_filter": {
+                    "type": "word_delimiter",
+                    "split_on_case_change": true
+                }
+            }
         }
-      },
-      "filter": {
-        "pattern_filter": {
-          "type": "pattern_replace",
-          "pattern": "dog",
-          "replacement": "DOG"
-        },
-        "synonyms_filter": {
-          "type": "synonym",
-          "synonyms": ["QUICK, fast"]
-        },
-        "word_delimiter_filter": {
-          "type": "word_delimiter",
-          "split_on_case_change": true
+    },
+    "mappings": {
+        "properties": {
+            "text": {
+                "type": "text",
+                "analyzer": "custom_analyzer"
+            }
         }
-      }
     }
-  },
-  "mappings": {
-    "properties": {
-      "text": {
-        "type": "text",
-        "analyzer": "custom_analyzer"
-      }
-    }
-  }
 }
 """
 

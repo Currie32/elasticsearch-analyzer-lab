@@ -4,8 +4,6 @@ from dash import dcc, html
 footer = html.Div(id='footer', children=[
     html.P("Elasticsearch Analyzer Lab. All rights reserved."),
     html.Div("|", className="footer-pipe"),
-    dcc.Link("About", href="/about"),
-    html.Div("|", className="footer-pipe"),
     html.A("We're open source!", target="_blank", href="https://github.com/Currie32/elasticsearch-analyzer-lab"),
     html.Div("|", className="footer-pipe"),
     html.A(

@@ -27,7 +27,7 @@ RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
 WORKDIR /app
 
 # Copy the required files for the Dash app
-COPY app.py footer.py requirements.txt ./
+COPY app.py footer.py requirements.txt robots.txt sitemap.xml ./
 COPY assets assets
 COPY pages pages
 

@@ -1,6 +1,6 @@
 import dash_bootstrap_components as dbc
-from dash import Dash, html, page_container
-from flask import Flask, request, send_from_directory
+from dash import Dash, dcc, html, page_container
+from flask import Flask, send_from_directory
 
 from footer import footer
 
@@ -15,40 +15,40 @@ app = Dash(
 app.config.suppress_callback_exceptions = True
 
 
-# @server.route("/robots.txt")
-# def serve_robots():
-#     return send_from_directory(".", "robots.txt", mimetype="text/plain")
+@server.route("/robots.txt")
+def serve_robots():
+    return send_from_directory(".", "robots.txt", mimetype="text/plain")
 
 
-# @server.route("/sitemap.xml")
-# def serve_sitemap():
-#     return send_from_directory(".", "sitemap.xml", mimetype="application/xml")
+@server.route("/sitemap.xml")
+def serve_sitemap():
+    return send_from_directory(".", "sitemap.xml", mimetype="application/xml")
 
 
 app.index_string = """<!DOCTYPE html>
 <html lang="en">
     <head>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-THNE3MSS49"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5K5QWFEQL1"></script>
         <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-            gtag('config', 'G-THNE3MSS49');
+        gtag('config', 'G-5K5QWFEQL1');
         </script>
         <meta charset="UTF-8">
-        <meta name="description" content="Practice a language by having conversations about the topic of your choice.">
-        <meta property="og:title" content="Practice a Language">
-        <meta property="og:description" content="Practice a language by having conversations about the topic of your choice.">
-        <meta property="og:image" content="https://practicealanguage.xyz/assets/favicon.ico">
-        <meta property="og:url" content="https://practicealanguage.xyz">
-        <meta name="twitter:card" content="https://practicealanguage.xyz/assets/favicon.ico">
-        <meta name="twitter:title" content="Practice a Language">
-        <meta name="twitter:description" content="Practice speaking and writing in a foreign language.">
-        <meta name="twitter:image" content="https://practicealanguage.xyz/assets/favicon.ico">
-        <meta name="google-adsense-account" content="ca-pub-4657073290295216">
-        <link rel="canonical" href="https://practicealanguage.xyz">
+        <meta name="description" content="Build and test your Elasticsearch analyzer to see how it tokenizes a string.">
+        <meta property="og:title" content="Elasticsearch Analyzer Lab">
+        <meta property="og:description" content="Build and test your Elasticsearch analyzer to see how it tokenizes a string.">
+        <meta property="og:image" content="https://elasticsearchanalyzerlab.xyz/assets/favicon.ico">
+        <meta property="og:url" content="https://elasticsearchanalyzerlab.xyz">
+        <meta name="twitter:card" content="https://elasticsearchanalyzerlab.xyz/assets/favicon.ico">
+        <meta name="twitter:title" content="Elasticsearch Analyzer Lab">
+        <meta name="twitter:description" content="Build and test your Elasticsearch analyzer to see how it tokenizes a string.">
+        <meta name="twitter:image" content="https://elasticsearchanalyzerlab.xyz/assets/favicon.ico">
+        <link rel="canonical" href="https://elasticsearchanalyzerlab.xyz">
         <meta name="robots" content="index, follow">
         {%metas%}
         <title>{%title%}</title>
@@ -73,8 +73,9 @@ app.layout = html.Div(
                 html.Div(
                     id="header",
                     children=[
-                        html.A(id="title", href="/", children=html.H1(children="Elasticsearch Analyzer Lab")),
-                        html.A(id="nav-title", href="/guides", children=html.H3(children="Guides")),
+                        dcc.Link(id="title", href="/", children=html.H1(children="Elasticsearch Analyzer Lab")),
+                        dcc.Link(className="nav-title", href="/about", children=html.H3(children="About")),
+                        dcc.Link(className="nav-title", href="/guides", children=html.H3(children="Guides")),
                     ],
                 ),
                 page_container,
